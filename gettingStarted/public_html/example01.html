@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Example 01</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <script src="js/angular.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl" ng-init="gr = 'green'">
+            First Name: <input type="text" ng-model="firstname" style="background-color: {{gr}}"><br/>
+            Last Name: <input type="text" ng-model="lastname"><br/>
+            Age: <input type="number" ng-model="age"><hr/>
+
+            Full Name: {{firstname + " " + lastname + " " + age}}
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function ($scope) {
+                $scope.firstname = "Mehedi";
+                $scope.lastname = "Hasan";
+                $scope.age = 28;
+            });
+        </script>
+    </body>
+</html>

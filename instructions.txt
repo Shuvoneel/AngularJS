@@ -1,0 +1,4 @@
+One: CLI - Command Line Interface
+	--> install NodeJS
+	--> install npm
+	--> install Angular CLI
