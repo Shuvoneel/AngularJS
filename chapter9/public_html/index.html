@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleApp">
+    <head>
+        <title>Listing 9.1 to 9.7</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <script src="js/angular.js"></script>
+        <script>
+            var myApp = angular.module("exampleApp", []);
+            myApp.controller("dayCtrl", function ($scope) {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            $scope.day = dayNames[new Date().getDay()];
+            $scope.tomorrow = dayNames[(new Date().getDay() + 1) % 7];
+            });
+            myApp.controller("tomorrowCtrl", function($scope) {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            $scope.day = dayNames[(new Date().getDay() + 1) % 7];
+            })
+        </script>
+    </head>
+    <body>
+        <div class="panel">
+            <div class="page-header">
+                <h2>Angular JS App</h2>
+            </div>
+            <h3 ng-controller="dayCtrl">Today is {{day|| "(unknown)"}}</h3>
+            <h4 ng-controller="tomorrowCtrl">Tomorrow is {{day|| "(unknown)"}}</h4>
+            <!--
+            <h5 ng-controller="dayCtrl">Tomorrow is {{tomorrow}}</h5>
+            -->
+        </div>
+    </body>
+</html>
