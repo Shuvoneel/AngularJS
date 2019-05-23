@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html ng-app="exampleApp"> 
+    <head>    
+        <title>AngularJS Demo</title>   
+        <link href="css/bootstrap.css" rel="stylesheet" />    
+        <link href="css/bootstrap-theme.css" rel="stylesheet" />    
+        <script src="js/angular.js"></script>   
+        <script>
+
+            var myApp = angular.module("exampleApp", []);
+            myApp.controller("dayCtrl", function ($scope, days) {
+            $scope.day = days.today;
+            });
+            myApp.controller("tomorrowCtrl", function ($scope, days) {
+            $scope.day = days.tomorrow;
+            });
+            myApp.directive("highlight", function ($filter) {
+            var dayFilter = $filter("dayName");
+            return function (scope, element, attrs) {
+            if (dayFilter(scope.day) == "Saturday") {
+            element.css("color", "purple");
+            }
+            else if (dayFilter(scope.day) == "Sunday"){
+            element.css("color", "red");
+            }
+            else if (dayFilter(scope.day) == "Monday"){
+            element.css("color", "green");
+            }
+            else if (dayFilter(scope.day) == "Tuesday"){
+            element.css("color", "yellow");
+            }
+            else if (dayFilter(scope.day) == "Wednesday"){
+            element.css("color", "gray");
+            }
+            else if (dayFilter(scope.day) == "Thursday"){
+            element.css("color", "olive");
+            element.css("font-style", "italic");
+            }
+            else {
+            element.css("color", "blue");
+            }
+            }
+            });
+            myApp.directive("bold", function ($filter) {
+            var dayFilter = $filter("dayName");
+            return function (scope, element, attrs) {
+            if (dayFilter(scope.day) == attrs["bold"]) {
+            element.css("font-weight", "bold");
+            }
+            }
+            });
+            myApp.filter("dayName", function () {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            return function (input) {
+            return angular.isNumber(input) ? dayNames[input] : input;
+            };
+            });
+            myApp.service("days", function () {
+            this.today = new Date().getDay();
+            this.tomorrow = this.today + 1;
+            });
+        </script>
+    </head> 
+    <body>   
+        <div class="panel">        
+            <div class="page-header">            
+                <h3>AngularJS App</h3>        
+            </div>        
+            <h4 ng-controller="dayCtrl" highlight="" bold="Thursday">            
+                Today is {{day|| "(unknown)" | dayName}}
+            </h4>       
+            <h4 ng-controller="tomorrowCtrl" highlight="">           
+                Tomorrow is {{day|| "(unknown)" | dayName}}        
+            </h4>    
+        </div> 
+    </body> 
+</html>
