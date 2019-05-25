@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleApp">
+    <head>
+        <title> Data Object Keys </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <script src="js/angular.js" type="text/javascript"></script>
+        <script>
+            angular.module("exampleApp", []).controller("defaultCtrl", function ($scope) {
+                $scope.todos = [
+                    {action: "Get Groceries", complete: false},
+                    {action: "Call plumber", complete: false},
+                    {action: "Buy shoes", complete: true},
+                    {action: "Buy flowers", complete: false},
+                    {action: "Call shuvo", complete: false}];
+            });
+        </script>
+    </head>
+    <body>
+        <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+            <h3 class="panel-heading">To Do List</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Action</th>
+                        <th>Complete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in todos">
+                        <td>{{$index + 1}}</td>
+                        <td ng-repeat="prop in item">{{prop}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
