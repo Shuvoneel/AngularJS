@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleApp">
+    <head>
+        <title>Additional Attributes for Check Boxes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <script src="js/angular.js"></script>
+        <script src="js/controller.js"></script>
+        <script src="js/filters.js"></script>
+        <script>
+            angular.module("exampleApp", []).controller("defaultCtrl", function ($scope) {});
+        </script>
+        <style>        
+            form.validate .ng-invalid-required.ng-dirty { background-color: lightpink; }        
+            form.validate .ng-invalid-email.ng-dirty {background-color: lightgoldenrodyellow; }        
+            div.error { color: red; font-weight: bold; } 
+        </style> 
+    </head>
+    <body>
+        <div id="todoPanel" class="panel" ng-controller="defaultCtrl">        
+            <form name="myForm" novalidate>            
+                <div class="well">                
+                    <div class="checkbox">                    
+                        <label>                        
+                            <input name="sample" type="checkbox" ng-model="inputValue" ng-true-value="Hurrah!" ng-false-value="Boo!">                        This is a checkbox                    
+                        </label>                
+                    </div>            
+                </div> 
+                <div class="well">                
+                    <p>Model Value: {{inputValue}}</p>            
+                </div>        
+            </form>    
+        </div> 
+    </body>
+</html>
