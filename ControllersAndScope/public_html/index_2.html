@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleApp">
+    <head>
+        <title>Adding Data and Logic to a Scope</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <script src="js/angular.js"></script>
+        <script>
+            angular.module("exampleApp", []).controller("simpleCtrl", function ($scope) {
+                $scope.city = "Dhaka";
+                $scope.getCountry = function (city) {
+                    switch (city) {
+                        case "London":
+                            return "UK";
+                        case "New York":
+                            return "USA";
+                        case "Dhaka":
+                            return "Bangladesh";
+                    }
+                };
+            });
+        </script> 
+    </head> 
+    <body>    
+        <div class="well" ng-controller="simpleCtrl">        
+            <p>The city is: {{city}}</p>        
+            <p>The country is: {{getCountry(city) || "Unknown"}}</p>    
+        </div>
+    </body> 
+</html>
